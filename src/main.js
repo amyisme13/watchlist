@@ -22,12 +22,12 @@ new Vue({
   },
   created() {
     firebase.initializeApp({
-      apiKey: process.env.API_KEY,
-      authDomain: process.env.AUTH_DOMAIN,
-      databaseURL: process.env.DATABASE_URL,
-      projectId: process.env.PROJECT_ID,
-      storageBucket: process.env.STORAGE_BUCKET,
-      messagingSenderId: process.env.MESSAGING_SENDER_ID,
+      apiKey: process.env.VUE_APP_API_KEY,
+      authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+      databaseURL: process.env.VUE_APP_DATABASE_URL,
+      projectId: process.env.VUE_APP_PROJECT_ID,
+      storageBucket: process.env.VUE_APP_STORAGE_BUCKET,
+      messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER_ID,
     });
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
