@@ -1,0 +1,20 @@
+<template lang="pug">
+  b-container
+    b-row
+      b-col(
+        v-for="movie in movies",
+        :key="movie.imdbId")
+        MoviePoster(:poster="movie.poster")
+</template>
+
+<script>
+import MoviePoster from './MoviePoster.vue';
+
+export default {
+  name: 'MovieShowcase',
+  props: ['movies'],
+  components: {
+    MoviePoster,
+  },
+};
+</script>
