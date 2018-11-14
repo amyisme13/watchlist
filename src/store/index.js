@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 import shared from './shared';
 import user from './user';
@@ -11,4 +12,5 @@ export default new Vuex.Store({
     shared,
     user,
   },
+  plugins: [createPersistedState()],
 });
