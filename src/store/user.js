@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: off */
 
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
 
 export default {
   state: {
