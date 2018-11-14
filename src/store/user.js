@@ -42,7 +42,7 @@ export default {
         photoUrl: payload.photoURL,
       });
     },
-    logout({ commit }) {
+    signOut({ commit }) {
       firebase.auth().signOut();
       commit('SET_USER', null);
     },
