@@ -1,5 +1,8 @@
 import BootstrapVue from 'bootstrap-vue';
 import * as firebase from 'firebase';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Vue from 'vue';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -11,6 +14,10 @@ import store from './store';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
+
+library.add(faGoogle);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(BootstrapVue);
 
