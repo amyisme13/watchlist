@@ -4,15 +4,14 @@
     type="dark",
     variant="dark")
     b-navbar-toggle(target="nav_collapse")
-    b-navbar-brand(href="#!") Watch List
+    b-navbar-brand Watch List
     b-collapse(
       is-nav,
       id="nav_collapse")
       b-navbar-nav
-        router-link(
+        b-nav-item(
           to="/",
-          exact,
-          tag="b-nav-item") Home
+          exact) Home
 
       b-navbar-nav.ml-auto
         b-nav-item-dropdown(
