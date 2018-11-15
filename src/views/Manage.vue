@@ -6,6 +6,7 @@
       b-col
         h2 List&nbsp;
           b-button(
+            to="/manage/add",
             variant="primary") Add
       b-col.text-right(cols="2")
         b-form-input(
