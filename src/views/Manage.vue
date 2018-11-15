@@ -20,11 +20,11 @@
       :fields="fields",
       :items="movies")
       template(
-        slot="posterImg",
+        slot="poster",
         slot-scope="data")
         b-img(
-          width="75",
-          height="75",
+          width="64",
+          height="64",
           thumbnail,
           fluid,
           :src="data.item.poster")
@@ -63,7 +63,7 @@ export default {
       movies: [],
       search: '',
       fields: [
-        'posterImg',
+        { key: 'poster', class: 'text-center' },
         { key: 'imdbId', sortable: true },
         { key: 'title', sortable: true },
         { key: 'year', sortable: true },
