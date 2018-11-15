@@ -16,8 +16,19 @@
 
     b-table(
       responsive,
+      :filter="search",
       :fields="fields",
-      :items="filteredMovies")
+      :items="movies")
+      template(
+        slot="posterImg",
+        slot-scope="data")
+        b-img(
+          width="75",
+          height="75",
+          thumbnail,
+          fluid,
+          :src="data.item.poster")
+
       template(
         slot="action"
         slot-scope="data")
@@ -52,6 +63,7 @@ export default {
       movies: [],
       search: '',
       fields: [
+        'posterImg',
         { key: 'imdbId', sortable: true },
         { key: 'title', sortable: true },
         { key: 'year', sortable: true },
@@ -65,15 +77,6 @@ export default {
     return {
       movies: db.collection('movies'),
     };
-  },
-  computed: {
-    filteredMovies() {
-      return this.movies.filter(({ title }) => {
-        const lowerTitle = title.toLowerCase();
-        const query = this.search.toLowerCase();
-        return lowerTitle.includes(query);
-      });
-    },
   },
   methods: {
     rateIs(val) {
