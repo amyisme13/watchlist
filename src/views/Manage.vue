@@ -27,7 +27,8 @@
           height="64",
           thumbnail,
           fluid,
-          :src="data.item.poster")
+          :src="data.item.poster",
+          @click="showModal(data.item)")
 
       template(
         slot="action"
@@ -51,6 +52,13 @@
           size="sm",
           @click="movieAction(data.item, 'rate', 'like')")
           font-awesome-icon(:icon="['far', 'thumbs-up']")
+
+    b-modal(
+      ref="imageModal",
+      hide-footer,
+      :title="currentMovie.title")
+      .text-center
+        b-img(:src="currentMovie.poster")
 </template>
 
 <script>
@@ -71,6 +79,10 @@ export default {
         { key: 'downloaded', sortable: true },
         { key: 'action' },
       ],
+      currentMovie: {
+        title: '',
+        poster: '',
+      },
     };
   },
   firestore() {
@@ -91,6 +103,10 @@ export default {
       } catch (err) {
         this.$store.dispatch('setError', err);
       }
+    },
+    showModal(movie) {
+      this.currentMovie = movie;
+      this.$refs.imageModal.show();
     },
   },
 };
