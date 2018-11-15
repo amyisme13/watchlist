@@ -8,11 +8,18 @@
     b-collapse(
       is-nav,
       id="nav_collapse")
+      b-navbar-nav
+        router-link(
+          to="/",
+          exact,
+          tag="b-nav-item") Home
+
       b-navbar-nav.ml-auto
         b-nav-item-dropdown(
           v-if="user",
           right)
           template(slot="button-content") {{ user.name }}
+          b-dropdown-item(to="/manage") Manage
           b-dropdown-item(@click="signOut") Sign Out
 
         SignInButton(
