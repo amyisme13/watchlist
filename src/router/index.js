@@ -31,5 +31,13 @@ export default new Router({
         return import(/* webpackChunkName: "manage" */ '../views/Manage.vue');
       },
     },
+    {
+      path: '/manage/add',
+      name: 'manage-add',
+      beforeEnter: AuthGuard,
+      component() {
+        return import(/* webpackChunkName: "manage-add" */ '../views/ManageAdd.vue');
+      },
+    },
   ],
 });
