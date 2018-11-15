@@ -1,5 +1,7 @@
 import BootstrapVue from 'bootstrap-vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Vue from 'vue';
@@ -18,7 +20,7 @@ import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 
-library.add(faGoogle);
+library.add(faGoogle, faThumbsUp, faThumbsDown, faDownload);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
