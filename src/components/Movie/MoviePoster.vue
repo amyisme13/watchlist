@@ -4,12 +4,13 @@
     :height="370",
     thumbnail,
     fluid,
-    :src="poster")
+    :src="poster",
+    :alt="`${title} poster`")
 </template>
 
 <script>
 export default {
   name: 'MoviePoster',
-  props: ['poster'],
+  props: ['poster', 'title'],
 };
 </script>

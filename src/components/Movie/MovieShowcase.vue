@@ -4,7 +4,9 @@
       b-col(
         v-for="movie in movies",
         :key="movie.imdbId")
-        MoviePoster(:poster="movie.poster")
+        MoviePoster(
+          :poster="movie.poster",
+          :title="movie.title")
 </template>
 
 <script>
