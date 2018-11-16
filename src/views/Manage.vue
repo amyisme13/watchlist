@@ -4,7 +4,7 @@
     hr
     b-row
       b-col
-        h2 List&nbsp;
+        h2 List &nbsp;
           b-button(
             to="/manage/add",
             variant="primary") Add
