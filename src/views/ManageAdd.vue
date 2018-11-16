@@ -80,6 +80,10 @@ export default {
       try {
         const res = await fetch(url);
         const json = await res.json();
+        if (json.Error) {
+          throw new Error(json.Error);
+        }
+
         const movies = json.Search.slice(0, 6);
         this.imdbMovies = movies.map(movie => ({
           title: movie.Title,
@@ -102,6 +106,10 @@ export default {
       try {
         const res = await fetch(url);
         const json = await res.json();
+        if (json.Error) {
+          throw new Error(json.Error);
+        }
+
         this.selected = {
           title: json.Title,
           year: json.Year,
