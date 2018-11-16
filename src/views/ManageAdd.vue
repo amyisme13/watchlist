@@ -2,7 +2,10 @@
   b-container.p-4.bg-light(fluid)
     h1 Add Movie
     hr
-    h2 Search Movie
+    h2 Search Movie &nbsp;
+      b-button(
+        to="/manage",
+        variant="info") Back
     b-row
       b-col(
         md="6",
@@ -15,8 +18,11 @@
             b-button(
               variant="primary",
               @click="searchOmdb") Search
+            b-button(
+              variant="danger",
+              @click="search='';imdbMovies=[]") Clear
 
-    b-row.mt-3
+    b-row.mt-3(v-if="!selected")
       b-col(
         v-for="movie in imdbMovies",
         cols="6",
@@ -26,9 +32,30 @@
           :movie="movie",
           btn-label="Select",
           @click="selectMovie(movie.imdbId)")
+
+    h2.mt-2(v-if="selected") New Movie
+    b-row(v-if="selected")
+      b-col(
+        md="6",
+        lg="4")
+        b-form-group(label="Title")
+          b-form-input(
+            :value="`${selected.title} (${selected.year})`",
+            disabled)
+
+        b-form-group(label="Rate")
+          b-form-select(v-model="selected.rate")
+            option(:value="null") Not Yet Watched
+            option(value="like") Like
+            option(value="hate") Hate
+
+        b-form-checkbox(v-model="selected.downloaded") Downloaded
+        b-button(@click="addMovie") Add This Movie
 </template>
 
 <script>
+import db from '@/database';
+
 import MovieCard from '@/components/Movie/MovieCard.vue';
 
 export default {
@@ -61,6 +88,7 @@ export default {
           imdbId: movie.imdbID,
           type: movie.Type,
         }));
+        this.selected = null;
       } catch (err) {
         this.$store.dispatch('setError', err);
       }
@@ -89,7 +117,22 @@ export default {
           director: json.Director,
           writer: json.Writer,
           actors: json.Actors.split(', '),
+          // not imdb
+          createdAt: new Date().toJSON(),
+          rate: null,
+          downloaded: false,
         };
+      } catch (err) {
+        this.$store.dispatch('setError', err);
+      }
+    },
+    async addMovie() {
+      if (!this.selected) return;
+
+      const movie = this.selected;
+      try {
+        await db.collection('movies').add(movie);
+        this.selected = null;
       } catch (err) {
         this.$store.dispatch('setError', err);
       }
