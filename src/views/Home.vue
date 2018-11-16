@@ -45,7 +45,7 @@ export default {
     },
     followed() {
       return this.movies
-        .filter(this.rateIs(undefined))
+        .filter(this.rateIs(null))
         .sort(this.compareDateBy('releasedAt'))
         .slice(0, 4);
     },
