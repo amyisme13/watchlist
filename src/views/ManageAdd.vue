@@ -24,10 +24,11 @@
 
     b-row.mt-3(v-if="!selected")
       b-col(
-        v-for="movie in imdbMovies",
         cols="6",
         md="4",
-        lg="2")
+        lg="2",
+        v-for="movie in imdbMovies",
+        :key="movie.imdbId")
         MovieCard(
           :movie="movie",
           btn-label="Select",
