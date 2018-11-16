@@ -4,7 +4,7 @@
     :height="370",
     thumbnail,
     fluid,
-    :src="poster",
+    :src="poster || defaultPoster",
     :alt="`${title} poster`")
 </template>
 
@@ -12,5 +12,10 @@
 export default {
   name: 'MoviePoster',
   props: ['poster', 'title'],
+  data() {
+    return {
+      defaultPoster: process.env.VUE_APP_DEFAULT_IMAGE,
+    };
+  },
 };
 </script>
