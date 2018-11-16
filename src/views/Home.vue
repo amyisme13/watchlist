@@ -34,19 +34,19 @@ export default {
     liked() {
       return this.movies
         .filter(this.rateIs('like'))
-        .sort(this.compareDateBy('createdAt'))
+        .sort(this.compareDateBy('createdAt', true))
         .slice(0, 4);
     },
     hated() {
       return this.movies
         .filter(this.rateIs('hate'))
-        .sort(this.compareDateBy('createdAt'))
+        .sort(this.compareDateBy('createdAt', true))
         .slice(0, 4);
     },
     followed() {
       return this.movies
         .filter(this.rateIs(undefined))
-        .sort(this.compareDateBy('releasedAt', true))
+        .sort(this.compareDateBy('releasedAt'))
         .slice(0, 4);
     },
   },
