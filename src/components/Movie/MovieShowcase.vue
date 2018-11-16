@@ -2,6 +2,8 @@
   b-container
     b-row
       b-col(
+        cols="6",
+        md="3",
         v-for="movie in movies",
         :key="movie.imdbId")
         MoviePoster(
