@@ -77,7 +77,8 @@ export default {
 
       const baseUrl = process.env.VUE_APP_OMDB_URL;
       const apiKey = process.env.VUE_APP_OMDB_KEY;
-      const url = `${baseUrl}/?s=${this.search}&apikey=${apiKey}`;
+      const searchType = this.search.substr(0, 2) === 'tt' ? 'i' : 's';
+      const url = `${baseUrl}/?${searchType}=${this.search}&apikey=${apiKey}`;
       try {
         const res = await fetch(url);
         const json = await res.json();
@@ -85,7 +86,12 @@ export default {
           throw new Error(json.Error);
         }
 
-        const movies = json.Search.slice(0, 6);
+        let movies;
+        if (json.Search) {
+          movies = json.Search.slice(0, 6);
+        } else {
+          movies = [json];
+        }
         this.imdbMovies = movies.map(movie => ({
           title: movie.Title,
           year: movie.Year,
