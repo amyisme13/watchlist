@@ -53,6 +53,12 @@
           @click="movieAction(data.item, 'rate', 'like')")
           font-awesome-icon(:icon="['far', 'thumbs-up']")
 
+        b-button(
+          variant="danger",
+          size="sm",
+          @click="deleteMovie(data.item)")
+          font-awesome-icon(:icon="['far', 'trash-alt']")
+
     b-modal(
       ref="imageModal",
       hide-footer,
@@ -100,6 +106,16 @@ export default {
         await ref.update({
           [field]: doc[field] === val ? null : val,
         });
+      } catch (err) {
+        this.$store.dispatch('setError', err);
+      }
+    },
+    async deleteMovie(doc) {
+      try {
+        await db
+          .collection('movies')
+          .doc(doc.id)
+          .delete();
       } catch (err) {
         this.$store.dispatch('setError', err);
       }
